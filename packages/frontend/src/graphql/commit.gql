@@ -1,0 +1,26 @@
+query Stream($streamId: String!, $id: String!) {
+  stream(id: $streamId) {
+    id
+    name
+    role
+    commit(id: $id) {
+      id
+      message
+      referencedObject
+      authorName
+      authorId
+      authorAvatar
+      createdAt
+      branchName
+      sourceApplication
+      # activity(actionType: "commit_receive", limit: 200) {
+      #   items {
+      #     info
+      #     time
+      #     userId
+      #     message
+      #   }
+      # }
+    }
+  }
+}

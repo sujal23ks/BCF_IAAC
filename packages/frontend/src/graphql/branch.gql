@@ -1,0 +1,24 @@
+query Stream($streamId: String!, $branchName: String!, $cursor: String) {
+  stream(id: $streamId) {
+    id
+    branch(name: $branchName) {
+      id
+      name
+      description
+      commits(cursor: $cursor) {
+        totalCount
+        cursor
+        items {
+          id
+          authorName
+          authorId
+          authorAvatar
+          sourceApplication
+          message
+          referencedObject
+          createdAt
+        }
+      }
+    }
+  }
+}
