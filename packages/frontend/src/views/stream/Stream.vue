@@ -228,6 +228,15 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item link :to="`/streams/${stream.id}/streamInfo`">
+          <v-list-item-icon>
+            <v-icon small>mdi-information</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Other Information</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-list-item link :to="`/streams/${stream.id}/uploads`">
           <v-list-item-icon>
             <v-icon small>mdi-arrow-up</v-icon>

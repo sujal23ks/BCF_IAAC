@@ -15,17 +15,23 @@
           :rules="nameRules"
           validate-on-blur
           autofocus
-          label="Stream Name (optional)"
+          label="Project Name (optional)"
         />
-        <v-text-field
-          v-model="orderId"
-          label="OrderID"
-        />
-         <v-text-field
-          v-model="deadline"
-          label="DeadLine"
-        />
+        <v-text-field v-model="orderId" label="OrderID" />
+        <v-text-field v-model="deadline" label="DeadLine" />
         <v-textarea v-model="description" rows="1" row-height="15" label="Description (optional)" />
+        <v-text-field v-model="materialType" label="Material Type" />
+        <v-text-field v-model="materialThickness" label="Material Thickness" />
+        <v-text-field v-model.number="tools" label="Tools" />
+        <v-text-field v-model.number="areaOfAllPartsTogether" label="Area Of All Parts Together" />
+        <!-- add a dropdown as status -->
+        <v-select v-model="status" :items="statuses" label="Status"></v-select>
+        <!-- add two radio button in a single line -->
+        <v-radio-group v-model="paid" row>
+          <v-radio label="Free" value="false"></v-radio>
+          <v-radio label="Paid" value="true"></v-radio>
+        </v-radio-group>
+
         <v-switch
           v-model="isPublic"
           v-tooltip="
@@ -145,13 +151,17 @@ export default {
       name: null,
       description: null,
       orderId: null,
-      deadline:null,
+      deadline: null,
       valid: false,
       search: null,
       nameRules: [],
       isPublic: false,
       collabs: [],
-      isLoading: false
+      isLoading: false,
+      statuses: [
+        { text: 'Waiting', value: 'waiting' },
+        { text: 'Nested', value: 'nested' }
+      ]
     }
   },
   watch: {
@@ -187,6 +197,15 @@ export default {
       this.collabs.splice(indx, 1)
     },
     async createStream() {
+      // print all the form data
+
+      let isPaid
+      if (this.paid == 'true') {
+        isPaid = true
+      } else {
+        isPaid = false
+      }
+
       if (!this.$refs.form.validate()) return
 
       this.isLoading = true
@@ -204,6 +223,13 @@ export default {
               isPublic: this.isPublic,
               description: this.description,
               orderId: this.orderId,
+              status: this.status,
+              materialType: this.materialType,
+              materialThickness: parseFloat(this.materialThickness),
+              paid: isPaid,
+              tools: parseFloat(this.tools),
+              areaOfAllPartsTogether: parseFloat(this.areaOfAllPartsTogether),
+              isBatch: false
               //deadline:this.deadline
             }
           }

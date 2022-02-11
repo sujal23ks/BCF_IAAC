@@ -21,6 +21,9 @@
             Updated
             <timeago :datetime="stream.updatedAt" class="ml-1"></timeago>
           </v-chip>
+          <!-- <v-chip small class="mr-1">
+            {{ count }}
+          </v-chip> -->
           <v-chip small v-if="stream.branches">
             <v-icon small class="mr-2 float-left">mdi-source-branch</v-icon>
             {{ stream.branches.totalCount }}
@@ -60,6 +63,12 @@ export default {
       type: Object,
       default: function () {
         return {}
+      }
+    },
+    count: {
+      type: Number,
+      default: function () {
+        return 0
       }
     }
   }

@@ -7,6 +7,14 @@ query Streams($cursor: String) {
       name
       description
       orderId
+      status
+      materialType
+      materialThickness
+      paid
+      tools
+      areaOfAllPartsTogether
+      isBatch
+      projectIds
       role
       isPublic
       createdAt

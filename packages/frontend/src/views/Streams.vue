@@ -49,9 +49,9 @@
           class="py-0"
         >
           <v-subheader class="ml-2">Your latest commits:</v-subheader>
+          <!-- v-if="commit" -->
           <v-list-item
             v-for="(commit, i) in userCommits.commits.items"
-            v-if="commit"
             :key="i"
             v-tooltip="`In stream '${commit.streamName}'`"
             :to="`streams/${commit.streamId}/${

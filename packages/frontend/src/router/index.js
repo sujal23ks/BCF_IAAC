@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  
   {
     path: '/authn',
     name: 'Auth',
@@ -76,7 +75,7 @@ const routes = [
         },
         component: () => import('@/views/Streams.vue')
       },
-         {
+      {
         path: 'nested-batch',
         name: 'nested-batch',
         meta: {
@@ -191,6 +190,15 @@ const routes = [
             component: () => import('@/views/stream/Globals.vue')
           },
           {
+            path: 'streamInfo/',
+            name: 'streamInfo',
+            meta: {
+              title: 'Stream Info | Speckle'
+            },
+            props: true,
+            component: () => import('@/views/stream/StreamInfo.vue')
+          },
+          {
             path: 'globals/:commitId',
             name: 'previous globals',
             meta: {
@@ -263,7 +271,7 @@ const routes = [
     },
     component: () => import('@/views/Error.vue')
   },
-  
+
   {
     path: '/onboarding',
     name: 'Onboarding | Speckle',

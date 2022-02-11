@@ -4,7 +4,15 @@ query Stream($id: String!) {
     name
     description
     orderId
+    status
+    materialType
+    materialThickness
+    paid
+    tools
+    areaOfAllPartsTogether
     isPublic
+    isBatch
+    projectIds
     createdAt
     updatedAt
     role
