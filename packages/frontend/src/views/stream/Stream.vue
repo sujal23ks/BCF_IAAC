@@ -25,6 +25,9 @@
           >
             <v-icon class="mr-2 primary--text" style="font-size: 20px">mdi-folder</v-icon>
             <b>{{ stream.name }}</b>
+            <p>
+              {{ stream.isBatch ? 'Batch' : 'Stream' }}
+            </p>
           </router-link>
         </v-toolbar-title>
       </v-app-bar>
@@ -117,7 +120,7 @@
         </v-list-item>
 
         <!-- Branch menu group -->
-         <v-list-group v-model="branchMenuOpen" class="my-2">
+        <v-list-group v-model="branchMenuOpen" class="my-2">
           <template #activator>
             <v-list-item-icon>
               <v-icon small>mdi-source-branch</v-icon>
@@ -562,6 +565,7 @@ export default {
             createdAt
             updatedAt
             description
+            isBatch
             isPublic
             orderId
             commits {
@@ -622,7 +626,7 @@ export default {
     $subscribe: {
       branchCreated: {
         query: gql`
-          subscription($streamId: String!) {
+          subscription ($streamId: String!) {
             branchCreated(streamId: $streamId)
           }
         `,
@@ -642,7 +646,7 @@ export default {
       },
       commitCreated: {
         query: gql`
-          subscription($streamId: String!) {
+          subscription ($streamId: String!) {
             commitCreated(streamId: $streamId)
           }
         `,

@@ -175,6 +175,14 @@ module.exports = {
         "isPublic",
         "createdAt",
         "updatedAt",
+        "status",
+        "materialType",
+        "materialThinkness",
+        "paid",
+        "tools",
+        "areaOfAllPartsTogether",
+        "isBatch",
+        "projectIds",
         "role",
       ])
       .select()

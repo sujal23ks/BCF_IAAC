@@ -43,6 +43,14 @@
                 <v-list-item-subtitle>Number Of Boards</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ stream.projectIds.length }}
+                </v-list-item-title>
+                <v-list-item-subtitle>Total Projects</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
             <v-card-actions>
               <v-btn outlined :color="`${$vuetify.theme.dark ? 'primary' : 'primary'}`">
                 calculate

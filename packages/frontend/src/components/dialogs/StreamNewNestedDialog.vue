@@ -20,19 +20,22 @@
 
         <v-list style="padding: 0">
           <v-list-item-group color="primary">
-            <v-list-item v-for="stream in streams.items" :key="stream.name">
+            <v-list-item v-for="stream in onlyProjects" :key="stream.name">
               <v-list-item-content>
                 <v-row no-gutters style="align-items: center">
                   <v-col cols="4" sm="2" style="align-content: center">
                     <v-list-item-title>{{ stream.name }}</v-list-item-title>
                   </v-col>
                   <v-col cols="4" sm="2">
-                    <a
-                      :href="'/streams/' + stream.id"
-                      style="text-decoration: none; color: inherit"
+                    <!--  click to copy id with icon -->
+                    <v-btn
+                      icon
+                      small
+                      @click="copyToClipboard(stream.id)"
+                      :title="`Copy url to clipboard`"
                     >
-                      <v-icon>mdi-link</v-icon>
-                    </a>
+                      <v-icon small>mdi-content-copy</v-icon>
+                    </v-btn>
                   </v-col>
                 </v-row>
                 <span style="color: #999">1st Jan 2022</span>
@@ -110,6 +113,16 @@ export default {
       isPublic: false,
       collabs: [],
       isLoading: false
+    }
+  },
+  computed: {
+    onlyProjects: function () {
+      return (
+        this.streams &&
+        this.streams.items.filter((stream) => {
+          return stream.isBatch == false
+        })
+      )
     }
   },
   watch: {
@@ -207,6 +220,9 @@ export default {
         console.log(e)
       }
       this.isLoading = false
+    },
+    copyToClipboard(url) {
+      navigator.clipboard.writeText('/streams/' + url)
     }
   }
 }
