@@ -94,19 +94,6 @@
               <v-card-text>
                 <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title>{{ stream.materialType }}</v-list-item-title>
-
-                    <v-list-item-subtitle>Material Type</v-list-item-subtitle>
-                  </v-list-item-content>
-
-                  <v-list-item-action>
-                    <v-btn icon>
-                      <v-icon color="grey lighten-1">mdi-information</v-icon>
-                    </v-btn>
-                  </v-list-item-action>
-                </v-list-item>
-                <v-list-item>
-                  <v-list-item-content>
                     <v-list-item-title>
                       {{ stream.materialThickness ? stream.materialThickness : '10.0' }}
                     </v-list-item-title>
@@ -191,6 +178,21 @@
           <v-card-text>
             <v-list-item>
               <v-list-item-content>
+                <v-list-item-title>
+                  {{ new Date(stream.deadline).toDateString() }}
+                </v-list-item-title>
+
+                <v-list-item-subtitle>Deadline</v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-btn icon>
+                  <v-icon color="grey lighten-1">mdi-information</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
                 <v-list-item-title>{{ stream.materialType }}</v-list-item-title>
 
                 <v-list-item-subtitle>Material Type</v-list-item-subtitle>
@@ -267,6 +269,7 @@ export default {
             id
             isPublic
             name
+            deadline
             description
             paid
             materialType
@@ -298,6 +301,7 @@ export default {
             items {
               id
               name
+              deadline
               description
               paid
               materialType

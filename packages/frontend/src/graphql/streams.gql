@@ -7,6 +7,7 @@ query Streams($cursor: String) {
       name
       description
       orderId
+      deadline
       status
       materialType
       materialThickness

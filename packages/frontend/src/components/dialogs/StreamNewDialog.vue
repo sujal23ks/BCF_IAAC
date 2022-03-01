@@ -18,10 +18,11 @@
           label="Project Name (optional)"
         />
         <v-text-field v-model="orderId" label="OrderID" />
-        <v-text-field v-model="deadline" label="DeadLine" />
+        <!-- take the date input -->
+        <v-text-field type="datetime-local" v-model="deadline" label="DeadLine" />
         <v-textarea v-model="description" rows="1" row-height="15" label="Description (optional)" />
         <v-text-field v-model="materialType" label="Material Type" />
-        <v-text-field v-model="materialThickness" label="Material Thickness" />
+        <v-text-field v-model="materialThickness" label="Material Thickness" type="" />
         <v-text-field v-model.number="tools" label="Tools" />
         <v-text-field v-model.number="areaOfAllPartsTogether" label="Area Of All Parts Together" />
         <!-- add a dropdown as status -->
@@ -151,7 +152,7 @@ export default {
       name: null,
       description: null,
       orderId: null,
-      deadline: null,
+      deadline: new Date(),
       valid: false,
       search: null,
       nameRules: [],
@@ -229,8 +230,8 @@ export default {
               paid: isPaid,
               tools: parseFloat(this.tools),
               areaOfAllPartsTogether: parseFloat(this.areaOfAllPartsTogether),
-              isBatch: false
-              //deadline:this.deadline
+              isBatch: false,
+              deadline: this.deadline
             }
           }
         })

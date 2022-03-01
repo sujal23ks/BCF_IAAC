@@ -29,6 +29,7 @@ type Stream {
   id: String!
   name: String!
   description: String
+  deadline: String
   isPublic: Boolean!
   orderId: String
   status: String
@@ -152,6 +153,7 @@ extend type Subscription {
 input StreamCreateInput {
   name: String
   description: String
+  deadline: String
   isPublic: Boolean
   orderId: String
   status: String
@@ -168,6 +170,7 @@ input StreamUpdateInput {
   id: String!
   name: String
   description: String
+  deadline: String
   isPublic: Boolean
   orderId: String
   status: String

@@ -24,6 +24,7 @@ module.exports = {
     areaOfAllPartsTogether,
     isBatch,
     projectIds,
+    deadline,
   }) {
     console.log("orderId", orderId);
     let stream = {
@@ -40,7 +41,7 @@ module.exports = {
       areaOfAllPartsTogether: areaOfAllPartsTogether,
       isBatch: isBatch,
       projectIds: projectIds,
-      // deadline: deadline,
+      deadline: deadline,
       updatedAt: knex.fn.now(),
     };
 
@@ -173,6 +174,7 @@ module.exports = {
         "name",
         "description",
         "isPublic",
+        "deadline",
         "createdAt",
         "updatedAt",
         "status",
