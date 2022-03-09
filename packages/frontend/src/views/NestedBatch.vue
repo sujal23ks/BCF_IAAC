@@ -114,7 +114,11 @@
             lg="10"
             xl="4"
           >
-            <list-item-stream :stream="stream"></list-item-stream>
+            <list-item-stream
+              :class="`${stream.isBatch ? '' : 'd-none'}`"
+              :stream="stream"
+              :count="streams.totalCount"
+            ></list-item-stream>
           </v-col>
           <infinite-loading
             v-if="streams.items.length < streams.totalCount"

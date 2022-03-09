@@ -49,9 +49,9 @@
           class="py-0"
         >
           <v-subheader class="ml-2">Your latest commits:</v-subheader>
+          <!-- v-if="commit" -->
           <v-list-item
             v-for="(commit, i) in userCommits.commits.items"
-            v-if="commit"
             :key="i"
             v-tooltip="`In stream '${commit.streamName}'`"
             :to="`streams/${commit.streamId}/${
@@ -103,10 +103,10 @@
         <div v-if="$apollo.loading" class="my-5"></div>
       </v-col>
 
-      <v-col v-else-if="streams && streams.items && streams.items.length > 0" cols="12">
+      <v-col v-else-if="streamsFiltered && streams.items && streams.items.length > 0" cols="12">
         <v-row :class="`${$vuetify.breakpoint.xsOnly ? '' : 'pl-2'}`">
           <v-col
-            v-for="(stream, i) in streams.items"
+            v-for="(stream, i) in streamsFiltered"
             :key="i"
             cols="12"
             sm="6"
@@ -239,6 +239,11 @@ export default {
   computed: {
     loggedIn() {
       return localStorage.getItem('uuid') !== null
+    },
+    streamsFiltered: function () {
+      return this.streams.items.filter((stream) => {
+        return stream.isBatch == false
+      })
     }
   },
   watch: {

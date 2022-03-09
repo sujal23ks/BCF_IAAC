@@ -18,31 +18,34 @@
           label="Batch Name"
         />
 
-      <v-list rounded >
-      
-      <v-list-item-group
-        color="primary"
-      >
-        <v-list-item
-          v-for="(stream) in streams.items"
-          :key="stream.name"
-        >
-          
-          <v-list-item-content>
-            <v-list-item-title v-text="stream.name"></v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action>
-          <v-checkbox @click="handleCheck(stream.id)"></v-checkbox>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-
-        
-        
-        
-        
-        
+        <v-list style="padding: 0">
+          <v-list-item-group color="primary">
+            <v-list-item v-for="stream in onlyProjects" :key="stream.name">
+              <v-list-item-content>
+                <v-row no-gutters style="align-items: center">
+                  <v-col cols="4" sm="2" style="align-content: center">
+                    <v-list-item-title>{{ stream.name }}</v-list-item-title>
+                  </v-col>
+                  <v-col cols="4" sm="2">
+                    <!--  click to copy id with icon -->
+                    <v-btn
+                      icon
+                      small
+                      @click="copyToClipboard(stream.id)"
+                      :title="`Copy url to clipboard`"
+                    >
+                      <v-icon small>mdi-content-copy</v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <span style="color: #999">1st Jan 2022</span>
+              </v-list-item-content>
+              <v-list-item-action>
+                <v-checkbox @click="handleCheck(stream.id)"></v-checkbox>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
       </v-card-text>
       <v-card-actions class="pb-3">
         <v-btn
@@ -100,17 +103,26 @@ export default {
   data() {
     return {
       name: null,
-      nestedStreams:{},
+      nestedStreams: {},
       description: null,
       orderId: null,
-      deadline:null,
+      deadline: null,
       valid: false,
       search: null,
       nameRules: [],
       isPublic: false,
       collabs: [],
-      isLoading: false,
-      
+      isLoading: false
+    }
+  },
+  computed: {
+    onlyProjects: function () {
+      return (
+        this.streams &&
+        this.streams.items.filter((stream) => {
+          return stream.isBatch == false
+        })
+      )
     }
   },
   watch: {
@@ -145,11 +157,10 @@ export default {
       let indx = this.collabs.findIndex((u) => u.id === user.id)
       this.collabs.splice(indx, 1)
     },
-    handleCheck(id){
-      
-      if(this.nestedStreams[id]){
+    handleCheck(id) {
+      if (this.nestedStreams[id]) {
         delete this.nestedStreams[id]
-      }else{
+      } else {
         this.nestedStreams[id] = true
       }
       console.log(this.nestedStreams)
@@ -160,13 +171,11 @@ export default {
       this.isLoading = true
       //this.$matomo && this.$matomo.trackPageView('stream/create')
       try {
-        const steamsArr = Object.keys(this.nestedStreams)
-        const payload = {
-          name: this.name,
-          streams: steamsArr
-        }
-        console.log(payload)
-        /* let res = await this.$apollo.mutate({
+        // const steamsArr = Object.keys(this.nestedStreams)
+        // make an array of stream ids
+        const projectIds = Object.keys(this.nestedStreams)
+
+        let res = await this.$apollo.mutate({
           mutation: gql`
             mutation streamCreate($myStream: StreamCreateInput!) {
               streamCreate(stream: $myStream)
@@ -178,12 +187,14 @@ export default {
               isPublic: this.isPublic,
               description: this.description,
               orderId: this.orderId,
+              isBatch: true,
+              projectIds: projectIds
               //deadline:this.deadline
             }
           }
-        }) */
+        })
 
-        /* console.log(res)
+        console.log(res)
 
         if (this.collabs.length !== 0) {
           for (let user of this.collabs) {
@@ -204,11 +215,14 @@ export default {
           }
         }
         this.$emit('created')
-        if (this.redirect) this.$router.push({ path: `/streams/${res.data.streamCreate}` }) */
+        if (this.redirect) this.$router.push({ path: `/streams/${res.data.streamCreate}` })
       } catch (e) {
         console.log(e)
       }
       this.isLoading = false
+    },
+    copyToClipboard(url) {
+      navigator.clipboard.writeText('/streams/' + url)
     }
   }
 }
