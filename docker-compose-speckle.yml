@@ -16,7 +16,7 @@ services:
     restart: always
     environment:
       # TODO: Change this to the URL of the speckle server, as accessed from the network
-      CANONICAL_URL: "http://164.92.203.127"
+      CANONICAL_URL: "http://bettercncfactory.iaac.net"
 
       # TODO: Change this to a unique secret for this server
       SESSION_SECRET: "TODO:Replace1"

@@ -61,7 +61,6 @@ services:
 
 # Storage persistency
 
-
 volumes:
   postgres-data: null
   redis-data: null
