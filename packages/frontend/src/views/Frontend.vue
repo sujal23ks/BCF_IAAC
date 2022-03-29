@@ -50,8 +50,8 @@
             <v-icon>mdi-folder</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Projects</v-list-item-title>
-            <v-list-item-subtitle class="caption">All your projects.</v-list-item-subtitle>
+            <v-list-item-title>Streams</v-list-item-title>
+            <v-list-item-subtitle class="caption">All your streams.</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
 

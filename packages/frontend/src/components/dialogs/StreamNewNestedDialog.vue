@@ -23,10 +23,10 @@
             <v-list-item v-for="stream in onlyProjects" :key="stream.name">
               <v-list-item-content>
                 <v-row no-gutters style="align-items: center">
-                  <v-col cols="4" sm="2" style="align-content: center">
+                  <v-col cols="8" sm="8" style="align-content: center">
                     <v-list-item-title>{{ stream.name }}</v-list-item-title>
                   </v-col>
-                  <v-col cols="4" sm="2">
+                  <v-col cols="4" sm="4">
                     <!--  click to copy id with icon -->
                     <v-btn
                       icon
