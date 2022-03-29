@@ -15,23 +15,23 @@
           :rules="nameRules"
           validate-on-blur
           autofocus
-          label="Project Name (optional)"
+          label="Stream Name (optional)"
         />
-        <v-text-field v-model="orderId" label="OrderID" />
+        <!-- <v-text-field v-model="orderId" label="OrderID" /> -->
         <!-- take the date input -->
-        <v-text-field type="datetime-local" v-model="deadline" label="DeadLine" />
+        <!-- <v-text-field type="datetime-local" v-model="deadline" label="DeadLine" /> -->
         <v-textarea v-model="description" rows="1" row-height="15" label="Description (optional)" />
-        <v-text-field v-model="materialType" label="Material Type" />
+        <!-- <v-text-field v-model="materialType" label="Material Type" />
         <v-text-field v-model="materialThickness" label="Material Thickness" type="" />
         <v-text-field v-model.number="tools" label="Tools" />
-        <v-text-field v-model.number="areaOfAllPartsTogether" label="Area Of All Parts Together" />
+        <v-text-field v-model.number="areaOfAllPartsTogether" label="Area Of All Parts Together" /> -->
         <!-- add a dropdown as status -->
-        <v-select v-model="status" :items="statuses" label="Status"></v-select>
+        <!-- <v-select v-model="status" :items="statuses" label="Status"></v-select> -->
         <!-- add two radio button in a single line -->
-        <v-radio-group v-model="paid" row>
+        <!-- <v-radio-group v-model="paid" row>
           <v-radio label="Free" value="false"></v-radio>
           <v-radio label="Paid" value="true"></v-radio>
-        </v-radio-group>
+        </v-radio-group> -->
 
         <v-switch
           v-model="isPublic"

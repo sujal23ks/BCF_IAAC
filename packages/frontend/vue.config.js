@@ -19,7 +19,7 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    proxy: 'http://localhost:ssh ',
+    proxy: 'http://localhost:3000',
     historyApiFallback: {
       rewrites: [
         { from: /^\/$/, to: '/app.html' },
